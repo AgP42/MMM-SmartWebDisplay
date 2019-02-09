@@ -1,0 +1,28 @@
+{
+  "name": "MMM-SmartWebDisplay",
+  "version": "0.0.1",
+  "description": "Smart iframe module for Magic Mirror",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AgP42/MMM-SmartWebDisplay"
+  },
+  "keywords": [
+    "magic mirror",
+    "smart mirror",
+    "iframe",
+    "notification",
+    "module"
+  ],
+  "author": "AgP42",
+  "contributors": "https://github.com/AgP42/MMM-SmartWebDisplay/graphs/contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AgP42/MMM-SmartWebDisplay/issues"
+  },
+  "homepage": "https://github.com/AgP42/MMM-SmartWebDisplay",
+  "dependencies": {
+    "request": "latest",
+    "express": "latest",
+    "body-parser" : "latest"
+    }
+}

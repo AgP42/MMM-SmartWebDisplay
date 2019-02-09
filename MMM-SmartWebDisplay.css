@@ -1,0 +1,96 @@
+/*
+ * Structure of the module : 
+ * 
+ * 		*************************************************************************
+ * 		*			.mainWrapper (contains everything else)						*
+ * 		*																		*
+ * 		*	*****************************************************************	*
+ * 		*	*	iFrame 														*	*
+ * 		*	*																*	*
+ * 		*	*****************************************************************	*
+ *		*																		*
+ * 		*	*****************************************************************	*
+ * 		*	*	.updateinfo (only displayed if "displayLastUpdate: true,")	*	*
+ * 		*	*																*	*
+ * 		*	*****************************************************************	*
+ * 		*																		*
+ *  	* 	*****************************************************************	*
+ * 		*	*	.stateinfo (only displayed if "displayStateInfos: true,")	*	*
+ * 		*	*																*	*
+ * 		*	*****************************************************************	*
+ * 		*																		*
+ * 		*************************************************************************
+ * 
+ * 
+ */
+
+.mainWrapper{
+
+margin-bottom: 500px;
+transform: scale(0.5) ;
+
+}
+
+
+.pinginfo{
+
+/*xsmall light*/
+
+  font-size: 15px;
+  line-height: 20px;
+  
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 300;
+  
+/*  margin-bottom: 10px;  */
+/*  transform: scale(3) ;*/
+  
+}
+
+.stateinfo{
+
+/*xsmall light*/
+
+  font-size: 15px;
+  line-height: 20px;
+  
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 300;
+  
+/*  margin-bottom: 10px;  */
+/*  transform: scale(3) ;*/
+  
+}
+
+.errorping{
+/*red*/
+
+  color: #ff0000;
+
+}
+
+.updateinfo{
+/*xsmall light*/
+
+  font-size: 15px;
+  line-height: 20px;
+  
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 300;
+  
+  transform: scale(2) ;
+  margin-bottom: 10px;  
+
+    
+}
+
+iframe{
+
+border:0 ; 
+/*transform: scale(0.5) ; */
+/*margin-bottom: 200px;*/
+
+}
+
+
+
