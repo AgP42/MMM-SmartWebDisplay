@@ -155,7 +155,7 @@ or with MMM-ModuleScheduler :
 {notification: 'SWD_URL', schedule: '30 7 * * *', payload: {url:["https://magicmirror.builders/"]}},
 
 from http requests using MMM-RemoteControl (GET request) : 
-http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_URL&payload={"url":["https://magicmirror.builders/", "http://blabla.com"], "update":"0", "NextURL":"1"}
+<code>http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_URL&payload={"url":["https://magicmirror.builders/", "http://blabla.com"], "update":"0", "NextURL":"1"}</code>
 
 
 ### URL rotation (NEXT, PREV, PLAY, PAUSE, STOP)
@@ -163,16 +163,24 @@ http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_URL&payloa
 From another module : 
 
 - {notification: "SWD_NEXT"},
+
 - {notification: "SWD_PREV"},
+
 - {notification: "SWD_PLAY"},
+
 - {notification: "SWD_PAUSE"},
+
 - {notification: "SWD_STOP"},
 
 From http request (GET request) : 
 http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_NEXT
+
 http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_PREV
+
 http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_PLAY
+
 http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_PAUSE
+
 http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_STOP
 
 ## Use case examples
