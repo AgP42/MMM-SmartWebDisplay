@@ -48,6 +48,23 @@ start: function () {
 
 }, //end start function
 
+//call only once at start-up
+iframeLoad: function() {
+	
+	if(this.config.logDebug){
+		Log.log ("iframeLoad à : " + moment.unix(Date.now() / 1000).format('dd - HH:mm:ss') + "url : " + this.urlToDisplay);		
+	}
+	
+	//Init of the iFrame   
+	iframe = document.createElement("IFRAME");
+	iframe.width = this.config.width;
+	iframe.height = this.config.height;
+	iframe.scrolling = this.config.scrolling;
+	iframe.src = this.urlToDisplay; 
+	
+    return iframe;
+},
+
 //allow to select the URL to be displayed
 selectURL: function(direction) {
 	
@@ -287,7 +304,16 @@ getDom: function() {
 	var wrapper = document.createElement("div");// main Wrapper that containts the others
 	wrapper.className = "mainWrapper"; //for CSS customization
 	
-	var html = `
+		//Init of the iFrame   
+	iframe = document.createElement("IFRAME");
+	iframe.width = this.config.width;
+	iframe.height = this.config.height;
+	iframe.scrolling = this.config.scrolling;
+	
+	iframe.src = this.urlToDisplay; 
+	wrapper.appendChild(iframe);//request the iFrame to be displayed
+	
+/*	var html = `
 			<iframe
 				src="${this.urlToDisplay}"
                 width="${this.config.width}"
@@ -296,7 +322,7 @@ getDom: function() {
             ></iframe>
         `;
 
-    wrapper.insertAdjacentHTML("afterbegin", html);               
+    wrapper.insertAdjacentHTML("afterbegin", html);  //*/             
 	
 	//to display last update at the end
 	if(this.config.displayLastUpdate){
