@@ -1,30 +1,32 @@
 # MMM-SmartWebDisplay
 
-The `MMM-SmartWebDisplay` module is for MagicMirror². It allow to display any web content to your [MagicMirror](https://github.com/MichMich/MagicMirror).
+`MMM-SmartWebDisplay` is a module for MagicMirror². It allow to display any web content to your [MagicMirror](https://github.com/MichMich/MagicMirror) and interact with it through notifications.
 
 This module is a major evolution of [MMM-iFrame-Ping](https://github.com/AgP42/MMM-iFrame-Ping)
  
 ## Main functionalities of MMM-SmartWebDisplay module: 
 - Allow periodic refresh of the URL, or not (configurable), this allow to display images or video
-- Allow several rotating URL, it is possible to change the URL through a timer, or throught notification
+- Allow several rotating URLs, it is possible to change the URL to display through a timer, or throught notification
 - Allow to receive notification for the following actions : 
-		- Change the URL or the list of URL to displays, and the refresh and rotating timer between the URLs
-		- Go to the next/previous URL
-		- Play/Pause/Stop the rotation of URLs
-	Those notification can by sent by several other MM module and also (thanks to MMM-RemoteControl) by external http request, as for example IFTTT or Tasker (Android)
+		- Change the URL or the list of URLs to displays, and update refresh timer value and rotating timer value
+		- Go to the next/previous URL of the list
+		- Play(or restart)/Pause/Stop the update and rotation of URLs
+These notifications can by sent by several other MM module and also (thanks to [MMM-RemoteControl](https://github.com/Jopyth/MMM-Remote-Control)) by external http request, as for example IFTTT or Tasker (Android)
 - If a PIR-sensor using MMM-PIR-Sensor module is used, the display will not be updated during screen off (this behavior works also with all other module that send the notification "USER_PRESENCE") and will be refresh with screen on.
-- If the iFrame-Ping module is hidden (by REMOTE-CONTROL or any Carousel module for example), the URL display will not be updated. As soon as one MMM-SmartWebDisplay module will be again displayed on the screen, an update will be requested.
+- If the MMM-SmartWebDisplay module is hidden (by REMOTE-CONTROL or any Carousel module for example), the URL display will not be updated. As soon as one MMM-SmartWebDisplay module will be again displayed on the screen, an update will be requested.
 - Possibility to display the date and time of the last update request (configurable)
+- Possibility to declare several instances (but so far the notification will address all the instances together)
 - CSS file
 
 Known issue : 
-- Bug if several instances of this module are declared together...
+- If several instances of this module are declared, the notifications send will apply on each instances. 
 
 Some screenshot : 
 
 Displaying YouTube (displayLastUpdate: true) : 
 ![MMM-iFrame-Ping](https://github.com/AgP42/MMM-iFrame-Ping/blob/master/screenshot/MMM-iFrame-Ping_youtube_update.png)
 Displaying TRENDnet snapshot (displayLastUpdate: false) : 
+
 ![MMM-iFrame-Ping](https://github.com/AgP42/MMM-iFrame-Ping/blob/master/screenshot/MMM-iFrame-Ping.png)
 
 
@@ -53,16 +55,16 @@ modules: [
 		position: 'middle_center',	// This can be any of the regions.
 		config: {
 			// See 'Configuration options' for more information.
-				logDebug: false, //set to true to get detailed debug logs. To see them : "Ctrl+Shift+i"
-				height:"100%", //hauteur du cadre en pixel ou %
-				width:"100%", //largeur
-                updateInterval: 0, //in min. Set it to 0 for no refresh (for videos)
-                NextURLInterval: 0.5, //in min, set it to 0 not to have automatic URL change. If only 1 URL given, it will be updated
-                displayStateInfos: false,	//to display if the module is on autoloop, or stop. 
-                displayLastUpdate: true, //to display the last update of the URL
-				displayLastUpdateFormat: 'ddd - HH:mm:ss', //format of the date and time to display
-                url: ["http://magicmirror.builders/", "https://www.youtube.com/embed/Qwc2Eq6YXTQ?autoplay=1"], //source of the URL to be displayed
-                scrolling: "no" // allow scrolling or not. html 4 only
+			logDebug: false, //set to true to get detailed debug logs. To see them : "Ctrl+Shift+i"
+			height:"100%", //hauteur du cadre en pixel ou %
+			width:"100%", //largeur
+               		updateInterval: 0, //in min. Set it to 0 for no refresh (for videos)
+                	NextURLInterval: 0.5, //in min, set it to 0 not to have automatic URL change. If only 1 URL given, it will be updated
+                	displayStateInfos: false,	//to display if the module is on autoloop, or stop. 
+                	displayLastUpdate: true, //to display the last update of the URL
+			displayLastUpdateFormat: 'ddd - HH:mm:ss', //format of the date and time to display
+                	url: ["http://magicmirror.builders/", "https://www.youtube.com/embed/Qwc2Eq6YXTQ?autoplay=1"], //source of the URL to be displayed
+                	scrolling: "no" // allow scrolling or not. html 4 only
 			}
 	},
 ]
@@ -148,11 +150,13 @@ The following properties can be configured:
 ### Change the URL
 
 From the config file of other module, example here with MMM-Navigate : 
-{notification: "SWD_URL", payload: {url:["https://magicmirror.builders/"]}}, 
-{notification: "SWD_URL", payload: {url:["https://www.youtube.com/embed/Qwc2Eq6YXTQ?autoplay=1"]}},
+
+<code>{notification: "SWD_URL", payload: {url:["https://magicmirror.builders/"]}}, 
+{notification: "SWD_URL", payload: {url:["https://www.youtube.com/embed/Qwc2Eq6YXTQ?autoplay=1"]}},>/code>
 
 or with MMM-ModuleScheduler : 
-{notification: 'SWD_URL', schedule: '30 7 * * *', payload: {url:["https://magicmirror.builders/"]}},
+
+<code>{notification: 'SWD_URL', schedule: '30 7 * * *', payload: {url:["https://magicmirror.builders/"]}},</code>
 
 from http requests using MMM-RemoteControl (GET request) : 
 <code>http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_URL&payload={"url":["https://magicmirror.builders/", "http://blabla.com"], "update":"0", "NextURL":"1"}</code>
@@ -173,6 +177,7 @@ From another module :
 - {notification: "SWD_STOP"},
 
 From http request (GET request) : 
+
 http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_NEXT
 
 http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_PREV
