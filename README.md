@@ -8,6 +8,7 @@ This module is a major evolution of [MMM-iFrame-Ping](https://github.com/AgP42/M
 - Allow periodic refresh of the URL, or not (configurable), this allow to display images or video
 - Allow several rotating URLs, it is possible to change the URL to display through a timer, or throught notification
 - Allow to receive notification for the following actions : 
+
 		- Change the URL or the list of URLs to displays, and update refresh timer value and rotating timer value
 		- Go to the next/previous URL of the list
 		- Play(or restart)/Pause/Stop the update and rotation of URLs
