@@ -19,7 +19,7 @@ Module.register("MMM-SmartWebDisplay",{
 				width:"100%", //largeur
                 updateInterval: 0, //in min. Set it to 0 for no refresh (for videos)
                 NextURLInterval: 0.5, //in min, set it to 0 not to have automatic URL change. If only 1 URL given, it will be updated
-                displayStateInfos: true,	//to display if the module is on autoloop, or stop. 
+                displayStateInfos: false,	//to display extra debug info directly on the module 
                 displayLastUpdate: true, //to display the last update of the URL
 				displayLastUpdateFormat: 'ddd - HH:mm:ss', //format of the date and time to display
                 url: ["http://magicmirror.builders/", "https://www.youtube.com/embed/Qwc2Eq6YXTQ?autoplay=1"], //source of the URL to be displayed
