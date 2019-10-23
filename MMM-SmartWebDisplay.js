@@ -19,7 +19,7 @@ Module.register("MMM-SmartWebDisplay",{
 				width:"100%", //largeur
                 updateInterval: 0, //in min. Set it to 0 for no refresh (for videos)
                 NextURLInterval: 0.5, //in min, set it to 0 not to have automatic URL change. If only 1 URL given, it will be updated
-                displayStateInfos: false,	//to display if the module is on autoloop, or stop. 
+                displayStateInfos: false,	//to display extra debug info directly on the module 
                 displayLastUpdate: true, //to display the last update of the URL
 				displayLastUpdateFormat: 'ddd - HH:mm:ss', //format of the date and time to display
                 url: ["http://magicmirror.builders/", "https://www.youtube.com/embed/Qwc2Eq6YXTQ?autoplay=1"], //source of the URL to be displayed
@@ -225,6 +225,90 @@ notificationReceived: function(notification, payload) {
 	}
 },
 
+
+getCommands: function(commander) {
+  commander.add({
+    command: 'swd_next',
+    callback: 'command_swd_next'
+  });
+  commander.add({
+    command: 'swd_prev',
+    callback: 'command_swd_prev'
+  });
+  commander.add({
+    command: 'swd_play',
+    callback: 'command_swd_play'
+  });
+  commander.add({
+    command: 'swd_stop',
+    callback: 'command_swd_stop'
+  });
+  commander.add({
+    command: 'swd_pause',
+    callback: 'command_swd_pause'
+  });
+  commander.add({
+    command: 'swd_url',
+    callback: 'command_swd_url'
+  });
+},
+
+command_swd_next: function(command, handler) {
+  	this.StopDisplay();	//on arrete tout ce qui cours
+   	this.StartDisplay("next");	//demande la prochaine video
+	//arreter puis relancer permet de relancer les timers de mise à jour
+    handler.reply("TEXT", "Next URL requested");
+},
+
+command_swd_prev: function(command, handler) {
+  	this.StopDisplay();	//on arrete tout ce qui cours
+   	this.StartDisplay("prev");
+	//arreter puis relancer permet de relancer les timers de mise à jour
+    handler.reply("TEXT", "Previous URL requested");
+},
+
+command_swd_play: function(command, handler) {
+	this.StopDisplay();	//on arrete tout ce qui cours
+   	this.StartDisplay();	//on relance avec l'URL en cours
+		//arreter puis relancer permet de relancer les timers de mise à jour
+    handler.reply("TEXT", "Play requested");
+},
+
+command_swd_stop: function(command, handler) {
+	this.StopDisplay();	//on arrete tout ce qui cours et on coupe la video
+
+    handler.reply("TEXT", "Stop requested");
+},
+
+command_swd_pause: function(command, handler) {
+		
+	clearInterval(this.updateIntervalID); // on arrete l'intervalle d'update en cours
+	this.updateIntervalID=0; //on reset la variable
+		
+	clearInterval(this.NextURLIntervalID); // on arrete l'intervalle pour passer d'une URL à l'autre en cours
+	this.NextURLIntervalID=0; //on reset la variable
+				
+	this.ActualState = "Pause";
+
+	//but the actual video continu to run, or the actual display will remains, only timers are stopped
+    
+	handler.reply("TEXT", "Pause requested");
+},
+
+command_swd_url: function(command, handler) {
+		
+	this.URLposition = 0; //on reinitialise notre boucle de lecture des URL pour recommencer par la 1ere
+		
+	if (handler.args){
+		this.url_list = [handler.args];
+	}
+		
+   	this.StopDisplay();	//on arrete tout ce qui cours
+   	this.StartDisplay();	//on relance avec les nouvelles infos       
+    
+	handler.reply("TEXT", "New URL received");
+},
+
 GestionUpdateIntervalSWD: function() {
 	if (UserPresence === true && this.ModuleiFrameHidden === false){ //user is present and module is displayed
 		
@@ -340,7 +424,7 @@ getDom: function() {
 		
 		var stateinfo = document.createElement("div"); 
 		stateinfo.className = "stateinfo"; // align-left
-		stateinfo.innerHTML = "Update display interval : " + this.updateInt + "min, Delay between each URL : " + this.nextURLInt + "min, actual status : " + this.ActualState;
+		stateinfo.innerHTML = /*"Update display interval : " + this.updateInt + "min, Delay between each URL : " + this.nextURLInt + "min, actual status : " + this.ActualState +*/ ", URL : " + this.url_list;
 		wrapper.appendChild(stateinfo);
 	}//*/
 			
