@@ -1,13 +1,13 @@
 # MMM-SmartWebDisplay
 
-`MMM-SmartWebDisplay` is a module for MagicMirror². It allow to display any web content to your [MagicMirror](https://github.com/MichMich/MagicMirror) and interact with it through notifications.
+`MMM-SmartWebDisplay` is a module for MagicMirror². It allow to display any web content to your [MagicMirror](https://github.com/MichMich/MagicMirror) and interact with it through notifications or with [MMM-TelegramBot](https://github.com/eouia/MMM-TelegramBot).
 
 This module is a major evolution of [MMM-iFrame-Ping](https://github.com/AgP42/MMM-iFrame-Ping)
  
 ## Main functionalities of MMM-SmartWebDisplay module: 
 - Allow periodic refresh of the URL, or not (configurable), this allow to display images or video
-- Allow several rotating URLs, it is possible to change the URL to display through a timer, or throught notification
-- Allow to receive notification for the following actions : 
+- Allow several rotating URLs, it is possible to change the URL to display through a timer, or throught notification, or with a Telegram message (with MMM-TelegramBot installed)
+- Allow to receive notification/Telegram messages for the following actions : 
 
 		- Change the URL or the list of URLs to displays, and update refresh timer value and rotating timer value
 		- Go to the next/previous URL of the list
@@ -20,15 +20,15 @@ These notifications can by sent by several other MM module and also (thanks to [
 - CSS file
 
 Known issue : 
-- If several instances of this module are declared, the notifications send will apply on each instances. 
+- If several instances of this module are declared, the notifications/Telegram messages send will apply on each instances. 
 
 Some screenshot : 
 
 Displaying YouTube (displayLastUpdate: true) : 
-![MMM-iFrame-Ping](https://github.com/AgP42/MMM-iFrame-Ping/blob/master/screenshot/MMM-iFrame-Ping_youtube_update.png)
+![MMM-SmartWebDisplay](https://github.com/AgP42/MMM-iFrame-Ping/blob/master/screenshot/MMM-iFrame-Ping_youtube_update.png)
 Displaying TRENDnet snapshot (displayLastUpdate: false) : 
 
-![MMM-iFrame-Ping](https://github.com/AgP42/MMM-iFrame-Ping/blob/master/screenshot/MMM-iFrame-Ping.png)
+![MMM-SmartWebDisplay](https://github.com/AgP42/MMM-iFrame-Ping/blob/master/screenshot/MMM-iFrame-Ping.png)
 
 
 ## Installation
@@ -187,6 +187,31 @@ http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_PLAY
 http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_PAUSE
 
 http://192.168.xx.xx:8080/remote?action=NOTIFICATION&notification=SWD_STOP
+
+Warning : "play/pause/stop" apply to the rotation of the URL, not to the video (if you display a video) itself. It is not possible to interact with the video itself...
+
+## Commands from MMM-TelegramBot
+
+Please see [here](https://github.com/eouia/MMM-TelegramBot) for this module documentation. 
+
+### Change the URL to be displayed : 
+
+/swd_url (then the url you want to display on your MagicMirror)
+for example :
+```
+/swd_url http://magicmirror.builders/
+```
+
+### Other commands : 
+```
+/swd_next
+/swd_prev
+/swd_play
+/swd_pause
+/swd_stop
+```
+
+Warning : "play/pause/stop" apply to the rotation of the URL, not to the video (if you display a video) itself. It is not possible to interact with the video itself...
 
 ## Use case examples
 
