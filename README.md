@@ -12,7 +12,9 @@ This module is a major evolution of [MMM-iFrame-Ping](https://github.com/AgP42/M
 	- Change the URL or the list of URLs to displays, and update refresh timer value and rotating timer value
 	- Go to the next/previous URL of the list
 	- Play(or restart)/Pause/Stop the update and rotation of URLs
-These notifications can by sent by several other MM module and also (thanks to [MMM-RemoteControl](https://github.com/Jopyth/MMM-Remote-Control)) by external http request, as for example IFTTT or Tasker (Android)
+
+These notifications can by sent by several other MM module and also (thanks to [MMM-RemoteControl](https://github.com/Jopyth/MMM-Remote-Control)) by external http request, as for example IFTTT or Tasker (Android). 
+You can also send notification easily by using this fork of MMM-RemoteControl that add specifics controls : [MMM-RemoteControl for SmartWebDisplay](https://github.com/AgP42/MMM-Remote-Control)
 - If a PIR-sensor using MMM-PIR-Sensor module is used, the display will not be updated during screen off (this behavior works also with all other module that send the notification "USER_PRESENCE") and will be refresh with screen on.
 - If the MMM-SmartWebDisplay module is hidden (by REMOTE-CONTROL or any Carousel module for example), the URL display will not be updated. As soon as one MMM-SmartWebDisplay module will be again displayed on the screen, an update will be requested.
 - Possibility to display the date and time of the last update request (configurable)
@@ -29,6 +31,9 @@ Displaying YouTube (displayLastUpdate: true) :
 Displaying TRENDnet snapshot (displayLastUpdate: false) : 
 
 ![MMM-SmartWebDisplay](https://github.com/AgP42/MMM-iFrame-Ping/blob/master/screenshot/MMM-iFrame-Ping.png)
+
+MMM-RemoteControl menu for SmartWebDisplay : 
+![](https://github.com/AgP42/MMM-Remote-Control/raw/master/.github/RemoteSWD_2.png)
 
 
 ## Installation
