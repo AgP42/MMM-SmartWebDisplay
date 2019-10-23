@@ -9,9 +9,10 @@ This module is a major evolution of [MMM-iFrame-Ping](https://github.com/AgP42/M
 - Allow several rotating URLs, it is possible to change the URL to display through a timer, or throught notification
 - Allow to receive notification for the following actions : 
 
-		- Change the URL or the list of URLs to displays, and update refresh timer value and rotating timer value
-		- Go to the next/previous URL of the list
-		- Play(or restart)/Pause/Stop the update and rotation of URLs
+	- Change the URL or the list of URLs to displays, and update refresh timer value and rotating timer value
+	- Go to the next/previous URL of the list
+	- Play(or restart)/Pause/Stop the update and rotation of URLs
+
 These notifications can by sent by several other MM module and also (thanks to [MMM-RemoteControl](https://github.com/Jopyth/MMM-Remote-Control)) by external http request, as for example IFTTT or Tasker (Android)
 - If a PIR-sensor using MMM-PIR-Sensor module is used, the display will not be updated during screen off (this behavior works also with all other module that send the notification "USER_PRESENCE") and will be refresh with screen on.
 - If the MMM-SmartWebDisplay module is hidden (by REMOTE-CONTROL or any Carousel module for example), the URL display will not be updated. As soon as one MMM-SmartWebDisplay module will be again displayed on the screen, an update will be requested.
