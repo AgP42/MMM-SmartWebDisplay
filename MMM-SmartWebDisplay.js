@@ -9,6 +9,7 @@
  
 //For the PIR sensor
 var UserPresence = true; //by default : user present. (No PIR-Sensor)
+var startTimePir = 0;
 
 Module.register("MMM-SmartWebDisplay",{
 		
@@ -23,7 +24,8 @@ Module.register("MMM-SmartWebDisplay",{
                 displayLastUpdate: true, //to display the last update of the URL
 				displayLastUpdateFormat: 'ddd - HH:mm:ss', //format of the date and time to display
                 url: ["http://magicmirror.builders/", "https://www.youtube.com/embed/Qwc2Eq6YXTQ?autoplay=1"], //source of the URL to be displayed
-                scrolling: "no" // allow scrolling or not. html 4 only
+				scrolling: "no", // allow scrolling or not. html 4 only
+				shutoffDelay: 10000	
 		},
 
 start: function () {
@@ -41,7 +43,8 @@ start: function () {
 		//local variables, copie the config at startup and then will follow its life...
 		this.url_list = this.config.url;
 		this.updateInt = this.config.updateInterval; 
-        this.nextURLInt = this.config.NextURLInterval;
+		this.nextURLInt = this.config.NextURLInterval;
+        this.shutoffDelay = this.config.shutoffDelay;		
 		
 		//run !!
    		this.StartDisplay();	
@@ -313,8 +316,8 @@ GestionUpdateIntervalSWD: function() {
 	if (UserPresence === true && this.ModuleiFrameHidden === false){ //user is present and module is displayed
 		
   		this.StartDisplay();	//on relance au dernier URL	
-	
-	}else{ //user is not present OR module is not displayed : stop updating and stop video playing
+		this.ModuleiFrameHidden = true;
+	}else if (UserPresence === false && this.ModuleiFrameHidden === false && new Date().getTime() > this.startTimePir + this.shutoffDelay){ //user is not present AND module is displayed AND shutoffDelay is ended already : stop updating and stop video playing
    		
    		this.StopDisplay();
 
