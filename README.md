@@ -68,9 +68,10 @@ modules: [
                		updateInterval: 0, //in min. Set it to 0 for no refresh (for videos)
                 	NextURLInterval: 0.5, //in min, set it to 0 not to have automatic URL change. If only 1 URL given, it will be updated
                 	displayLastUpdate: true, //to display the last update of the URL
-			displayLastUpdateFormat: 'ddd - HH:mm:ss', //format of the date and time to display
+					displayLastUpdateFormat: 'ddd - HH:mm:ss', //format of the date and time to display
                 	url: ["http://magicmirror.builders/", "https://www.youtube.com/embed/Qwc2Eq6YXTQ?autoplay=1"], //source of the URL to be displayed
-                	scrolling: "no" // allow scrolling or not. html 4 only
+					scrolling: "no", // allow scrolling or not. html 4 only
+					shutoffDelay: 10000 //delay in miliseconds to video shut-off while using together with MMM-PIR-Sensor 
 			}
 	},
 ]
@@ -149,6 +150,13 @@ The following properties can be configured:
 				<br><b>Default value:</b> <code>false</code>
 			</td>
 		</tr>
+		<tr>
+			<td><code>shutoffDelay</code></td>
+			<td>The delay between getting USER_PRESENCE notification from the PIR sensor. Please be acknoledged, that each time the MMM-PIR-Sensor will receive a modification of the sensor status, it will sent IMMIDIATELLY (to everyone, so to MMM-SmartWebDisplay too) a notification saying “USER_PRESENCE=true” or false.<br>
+				<br><b>Possible values:</b> <code>Any miliseconds</code>
+				<br><b>Default value:</b> <code>10000</code>
+			</td>
+		</tr>		
 </table>
 
 ## Notifications
